@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -12,18 +16,31 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class contactos extends AppCompatActivity {
+import OpenHelper.SQLite_OpenHelper;
+
+public class agregar_contacto extends AppCompatActivity {
+
+
+        EditText txtNom, txtTel, TxtCorr;
+
+        SQLite_OpenHelper helper = new SQLite_OpenHelper(this, "BD_contactos", null, 1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_contactos);
+        setContentView(R.layout.activity_agregar_contacto);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        txtNom = findViewById(R.id.txtNombre);
+        txtTel = findViewById(R.id.txtTelefono);
+        TxtCorr = findViewById(R.id.txtCorreo);
+
+
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_desplegable, menu);
@@ -47,6 +64,13 @@ public class contactos extends AppCompatActivity {
             Toast.makeText(this, "Este es un cartel", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    public void grabarContacto(View view){
+            helper.insertar(txtNom.getText().toString(), txtTel.getText().toString(), TxtCorr.getText().toString());
+            Toast.makeText(this, "Contacto guardado", Toast.LENGTH_LONG).show();
+
 
     }
 }

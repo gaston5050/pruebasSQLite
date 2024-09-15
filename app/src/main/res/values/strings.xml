@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PruebaConexionSQLite</string>
+    <string name="agregar">Agregar Contactos</string>
+    <string name="contactos">Contactos</string>
+    <string name="aviso">Cartel de aviso</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Telefono</string>
+    <string name="correo">Correo</string>
+    <string name="guardar">Guardar</string>
+
 </resources>
